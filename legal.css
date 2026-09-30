@@ -12,6 +12,7 @@ body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.65 Poppi
 main{max-width:780px;margin:0 auto;padding:36px 20px 70px}
 h1{font-size:1.9rem;margin:.2em 0 .2em}
 h2{font-size:1.15rem;margin:2em 0 .4em}
+h3{font-size:1rem;margin:1.4em 0 .3em}
 a{color:var(--link)}
 .muted{color:var(--muted);font-size:.92rem}
 code{background:#ecebf3;padding:1px 5px;border-radius:4px;font-size:.88em}
