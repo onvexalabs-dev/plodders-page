@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://onvexalabs-dev.github.io/plodders-page/sitemap.xml

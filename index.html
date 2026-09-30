@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plodders: Rescue Puzzle – 1000 retro pixel rescue puzzles for Android</title>
+<meta name="description" content="They never stop walking. Guide a stubborn crowd of tiny helmet workers home in 1000 retro pixel-art rescue puzzles. 34 worlds, 8 skills, no forced ads, plays offline.">
+<meta name="theme-color" content="#1b1530">
+<link rel="canonical" href="https://onvexalabs-dev.github.io/plodders-page/">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/poppins-bold.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Plodders: Rescue Puzzle">
+<meta property="og:description" content="They never stop walking. Can you save them all? 1000 retro pixel rescue puzzles for Android.">
+<meta property="og:image" content="https://onvexalabs-dev.github.io/plodders-page/img/og.jpg">
+<meta property="og:url" content="https://onvexalabs-dev.github.io/plodders-page/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Plodders: Rescue Puzzle","gamePlatform":"Android","operatingSystem":"Android","applicationCategory":"GameApplication","genre":["Puzzle","Retro"],"inLanguage":["en","de","es","fr","pt","it"],"image":"https://onvexalabs-dev.github.io/plodders-page/img/og.jpg","author":{"@type":"Organization","name":"Onvexa Labs","email":"onvexalabs@gmail.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<style>
+@font-face{font-family:Poppins;font-weight:400;font-display:swap;src:url(fonts/poppins-regular.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-weight:700;font-display:swap;src:url(fonts/poppins-bold.woff2) format("woff2")}
+:root{
+  --night:#1b1530;--night2:#241c3f;--panel:#2c2350;--line:rgba(255,255,255,.1);
+  --text:#eeeaf8;--muted:#b7afd3;--gold:#ffd75e;--orange:#ff8a2f;--violet:#b24ad8;
+  --grass:#a6d94f;--dirt:#55331c;--dirt2:#3f2615;--ink:#120e22;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--night);color:var(--text);font:400 17px/1.6 Poppins,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+img,video,canvas{max-width:100%;display:block}
+img{height:auto}
+a{color:var(--gold)}
+h1,h2,h3{font-weight:700;line-height:1.15;margin:0 0 .5em;letter-spacing:.01em}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);text-transform:uppercase;text-shadow:3px 3px 0 var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.px{image-rendering:pixelated;image-rendering:crisp-edges}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* nav */
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:18px;padding:14px 20px}
+.nav .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.06em;font-size:.9rem;text-shadow:2px 2px 0 var(--ink)}
+.nav .brand img{width:34px;height:34px;border-radius:8px;box-shadow:2px 2px 0 var(--ink)}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{color:#fff;text-decoration:none;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-shadow:2px 2px 0 var(--ink)}
+.nav ul a:hover{color:var(--gold)}
+.lang{appearance:none;background:rgba(18,14,34,.7);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:8px;padding:6px 28px 6px 10px;font:700 .8rem Poppins,sans-serif;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 14px) 52%,calc(100% - 9px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+@media (max-width:820px){.nav ul{display:none}.lang{margin-left:auto}.nav{position:relative;background:#36234c;padding:10px 16px}}
+
+/* hero */
+.hero-art{position:relative;height:clamp(300px,38.3vw,720px);background:#36234c var(--hero,url(img/hero_en.webp)) center 100%/cover no-repeat;overflow:hidden}
+.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;touch-action:manipulation}
+.hero-art h1{position:absolute;left:0;right:0;top:0;margin:0}
+.hero-ground{background:linear-gradient(var(--dirt),var(--dirt2) 70%,var(--night));position:relative;padding:26px 0 70px;text-align:center}
+.hero-ground::before{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;
+  background-image:radial-gradient(#6f4527 1.5px,transparent 1.6px),radial-gradient(#2e1b0f 1.5px,transparent 1.6px);background-size:46px 34px,62px 41px;background-position:0 0,23px 17px}
+.hero-ground>*{position:relative}
+.tagline{font-weight:700;font-size:clamp(2rem,6vw,4.2rem);text-transform:uppercase;color:#fff;text-shadow:4px 4px 0 var(--ink);margin:0}
+.tagline span{color:var(--gold)}
+.sub{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:700;color:var(--gold);margin:.2em 0 .6em;text-shadow:2px 2px 0 var(--ink)}
+.lead{max-width:680px;margin:0 auto 1.6em;color:#f2e6da}
+.tip{font-size:.85rem;color:#e9cfae;margin:1.4em 0 0;opacity:.9}
+.tip b{color:var(--gold)}
+.btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:10px;font:700 1rem Poppins,sans-serif;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-dark{background:var(--panel);color:#fff}
+.btn small{display:block;font-size:.68rem;letter-spacing:.08em;opacity:.8;line-height:1.1}
+.btn .play-tri{width:0;height:0;border-left:14px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-34px auto 0;max-width:900px;position:relative;z-index:2}
+.stat{background:var(--panel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:12px;padding:16px 10px;text-align:center}
+.stat b{display:block;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1;color:var(--gold);text-shadow:3px 3px 0 var(--ink)}
+.stat span{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+section{padding:88px 0}
+.center{text-align:center}
+.intro{max-width:700px;margin:0 auto 2.4em;color:var(--muted)}
+.stars{background:
+  radial-gradient(1.5px 1.5px at 12% 20%,#fff8 50%,transparent 51%),radial-gradient(1.5px 1.5px at 68% 12%,#fff6 50%,transparent 51%),
+  radial-gradient(2px 2px at 35% 70%,#fff5 50%,transparent 51%),radial-gradient(1.5px 1.5px at 85% 55%,#fff7 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 50% 40%,#fff4 50%,transparent 51%),radial-gradient(2px 2px at 92% 88%,#fff5 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 5% 85%,#fff6 50%,transparent 51%),var(--night);background-size:420px 420px}
+
+/* how */
+.how{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 26px 70px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:50px;height:50px;border-radius:10px;background:var(--gold);color:var(--ink);font-weight:700;font-size:1.5rem;display:grid;place-items:center;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.steps h3{font-size:1.3rem;margin:.1em 0 .2em;text-transform:uppercase}
+.steps p{margin:0;color:var(--muted)}
+.screen{border-radius:14px;overflow:hidden;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink),0 0 0 3px var(--gold) inset;background:#000}
+.screen video{width:100%;aspect-ratio:16/9;object-fit:cover}
+@media (max-width:860px){.how{grid-template-columns:1fr}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.skill{background:var(--panel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:12px;padding:18px 16px;transition:transform .12s}
+.skill:hover{transform:translateY(-4px)}
+.skill .ic{width:48px;height:48px;background:url(img/icons.png) 0 0/1248px 48px no-repeat;image-rendering:pixelated;margin-bottom:10px}
+.skill h3{font-size:1rem;letter-spacing:.06em;color:var(--gold);margin:0 0 .3em}
+.skill p{font-size:.86rem;line-height:1.5;margin:0;color:var(--muted)}
+@media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.skills{grid-template-columns:1fr}}
+
+/* worlds */
+.worlds{background:linear-gradient(180deg,var(--night) 0%,#2a1846 40%,#4a1f4f 75%,#6b2a3a 100%);position:relative;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 auto 34px;max-width:860px}
+.chip{padding:6px 14px;border-radius:999px;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);color:var(--ink)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery button{padding:0;border:3px solid var(--ink);border-radius:10px;overflow:hidden;cursor:zoom-in;background:#000;box-shadow:4px 4px 0 var(--ink);transition:transform .12s}
+.gallery button:hover{transform:scale(1.03)}
+.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover}
+@media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+dialog{border:0;padding:0;background:transparent;max-width:min(1280px,94vw)}
+dialog::backdrop{background:rgba(10,8,20,.9)}
+dialog img{border-radius:10px;border:3px solid var(--ink)}
+dialog .close{position:absolute;top:-14px;right:-6px}
+.close{background:var(--gold);border:3px solid var(--ink);border-radius:8px;font:700 1rem Poppins,sans-serif;padding:4px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+
+/* trailer */
+.trailer .screen{max-width:960px;margin:0 auto}
+.trailer video{aspect-ratio:16/9;width:100%}
+
+/* fair */
+.fair{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fair div{background:rgba(255,255,255,.04);border:2px solid var(--line);border-radius:12px;padding:20px}
+.fair h3{font-size:1.05rem;margin:0 0 .3em;display:flex;gap:10px;align-items:center}
+.fair h3::before{content:"";width:14px;height:14px;flex:none;background:var(--grass);box-shadow:3px 3px 0 var(--ink)}
+.fair p{margin:0;color:var(--muted);font-size:.92rem}
+@media (max-width:860px){.fair{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.fair{grid-template-columns:1fr}}
+
+/* final */
+.final{text-align:center;background:linear-gradient(180deg,var(--night),#3a1f52 60%,#b24ad8 100%);padding-bottom:0}
+.final .strip{height:140px;margin-top:60px;background:url(img/hero_en.webp) center 100%/cover;position:relative}
+.final .strip::after{content:"";position:absolute;inset:0;background:linear-gradient(#b24ad8,transparent 60%)}
+
+/* press */
+.press{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:start}
+.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;background:var(--panel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:12px;padding:20px 22px;font-size:.92rem}
+.facts dt{font-weight:700;color:var(--gold)}
+.facts dd{margin:0}
+.dl{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.dl a{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:10px;background:rgba(255,255,255,.05);border:2px solid var(--line);text-decoration:none;color:var(--text);font-weight:700;font-size:.9rem}
+.dl a:hover{border-color:var(--gold)}
+.dl a span{color:var(--muted);font-weight:400}
+@media (max-width:860px){.press{grid-template-columns:1fr}}
+
+footer{background:var(--ink);padding:34px 0;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:18px;margin-left:auto}
+footer a{color:var(--text)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top"><img src="img/icon-192.png" alt="" width="34" height="34">ONVEXA LABS</a>
+    <ul>
+      <li><a href="#how" data-i18n="nav_how">How it works</a></li>
+      <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+      <li><a href="#worlds" data-i18n="nav_worlds">Worlds</a></li>
+      <li><a href="#trailer" data-i18n="nav_trailer">Trailer</a></li>
+      <li><a href="#press" data-i18n="nav_press">Press</a></li>
+    </ul>
+    <label class="sr" for="lang">Language</label>
+    <select id="lang" class="lang">
+      <option value="en">EN</option><option value="de">DE</option><option value="es">ES</option>
+      <option value="fr">FR</option><option value="pt">PT</option><option value="it">IT</option>
+    </select>
+  </nav>
+  <div class="hero-art" id="top">
+    <h1 class="sr">Plodders: Rescue Puzzle</h1>
+    <canvas id="crowd" aria-label="Animated plodders walking. Tap one to turn it into a Stopper."></canvas>
+  </div>
+  <div class="hero-ground">
+    <div class="wrap">
+      <p class="tagline" data-i18n="hero_title">They never stop <span>walking.</span></p>
+      <p class="sub" data-i18n="hero_sub">Can you save them all?</p>
+      <p class="lead" data-i18n="hero_text">A retro pixel-art rescue puzzle for Android. Tiny helmet workers march straight into every danger – unless you give them the right job at the right moment.</p>
+      <div class="btns">
+        <a class="btn btn-gold" id="playBtn" href="https://play.google.com/store/apps/details?id=com.onvexalabs.plodders" rel="noopener"><span class="play-tri"></span><span><small data-i18n="cta_small">Android</small><span data-i18n="cta_soon">Coming soon to Google Play</span></span></a>
+        <a class="btn btn-dark" href="#trailer" data-i18n="cta_trailer">Watch the trailer</a>
+      </div>
+      <p class="tip" data-i18n="hero_tip">Psst – tap a plodder up there to turn it into a <b>Stopper</b>.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>1000</b><span data-i18n="stat_levels">Levels</span></div>
+      <div class="stat"><b>34</b><span data-i18n="stat_worlds">Worlds</span></div>
+      <div class="stat"><b>8</b><span data-i18n="stat_skills">Skills</span></div>
+      <div class="stat"><b>0</b><span data-i18n="stat_ads">Forced ads</span></div>
+    </div>
+  </div>
+
+  <section id="how" class="stars">
+    <div class="wrap how">
+      <div class="reveal">
+        <h2 data-i18n="how_title">How it works</h2>
+        <ol class="steps">
+          <li><h3 data-i18n="how1_t">They march.</h3><p data-i18n="how1_d">Plodders walk on their own and never stop – not at cliffs, not at lava, not at anything.</p></li>
+          <li><h3 data-i18n="how2_t">You hand out jobs.</h3><p data-i18n="how2_d">Pause, tap a plodder, pick a skill. Build stairs, punch through rock, drill down, glide over the abyss.</p></li>
+          <li><h3 data-i18n="how3_t">Bring them home.</h3><p data-i18n="how3_d">Save enough to clear the level. Save every single one for three stars.</p></li>
+        </ol>
+      </div>
+      <div class="screen reveal">
+        <video src="video/gameplay_loop.mp4" poster="img/loop_poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gameplay"></video>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="center reveal">
+        <h2 data-i18n="skills_title">8 skills. Endless combinations.</h2>
+        <p class="intro" data-i18n="skills_sub">Every level hands you a limited set. Deciding who does what – and exactly when – is the whole puzzle.</p>
+      </div>
+      <div class="skills" id="skillGrid"></div>
+    </div>
+  </section>
+
+  <section id="worlds" class="worlds">
+    <div class="wrap">
+      <div class="center reveal">
+        <h2 data-i18n="worlds_title">1000 levels. 34 worlds. One stubborn crowd.</h2>
+        <p class="intro" data-i18n="worlds_text">Quarry, foundry, frozen caverns, sunken ruins and the clock tower – then all of them again by moonlight, at twilight, toxic, crimson, stormy and golden. The first levels teach you gently. The expert levels will make you sweat.</p>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="gallery reveal" id="gallery"></div>
+    </div>
+  </section>
+
+  <section id="trailer" class="trailer stars">
+    <div class="wrap center">
+      <h2 class="reveal" data-i18n="trailer_title">See them plod</h2>
+      <div class="screen reveal"><video id="trailerVideo" controls preload="none" poster="img/trailer_poster.jpg" playsinline><source id="trailerSrc" src="video/trailer_en.mp4" type="video/mp4"></video></div>
+    </div>
+  </section>
+
+  <section id="fair">
+    <div class="wrap">
+      <h2 class="center reveal" data-i18n="fair_title">Fair by design</h2>
+      <div class="fair reveal">
+        <div><h3 data-i18n="f1_t">No forced ads</h3><p data-i18n="f1_d">An ad only plays if you choose to watch one – for a boost after a failed level. Say no and play on.</p></div>
+        <div><h3 data-i18n="f2_t">No in-app purchases</h3><p data-i18n="f2_d">All 1000 levels are free. No gems, no energy bars, no waiting timers.</p></div>
+        <div><h3 data-i18n="f3_t">Plays offline</h3><p data-i18n="f3_d">No account, no login, no internet connection needed to play.</p></div>
+        <div><h3 data-i18n="f4_t">Pause, rewind, fast-forward</h3><p data-i18n="f4_d">Plan every rescue calmly – or undo a mistake in a second.</p></div>
+        <div><h3 data-i18n="f5_t">6 languages</h3><p>English, Deutsch, Español, Français, Português, Italiano.</p></div>
+        <div><h3 data-i18n="f6_t">Every level is solvable</h3><p data-i18n="f6_d">Each of the 1000 levels was beaten by a solver in the real game before it made the cut.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap reveal">
+      <h2 data-i18n="final_title">Ready to lead the march?</h2>
+      <p class="intro" data-i18n="final_text">Plodders: Rescue Puzzle is coming soon to Google Play for Android phones and tablets. Free to play – the way it should be.</p>
+      <div class="btns"><a class="btn btn-gold" id="playBtn2" href="https://play.google.com/store/apps/details?id=com.onvexalabs.plodders" rel="noopener"><span class="play-tri"></span><span data-i18n="cta_soon">Coming soon to Google Play</span></a></div>
+    </div>
+    <div class="strip" aria-hidden="true"></div>
+  </section>
+
+  <section id="press">
+    <div class="wrap">
+      <h2 class="reveal" data-i18n="press_title">Press &amp; creators</h2>
+      <p class="intro reveal" style="margin-left:0" data-i18n="press_text">Want to write about Plodders or play it on your channel? Everything you need is right here – and questions are always welcome.</p>
+      <div class="press reveal">
+        <dl class="facts">
+          <dt data-i18n="pf_dev">Developer</dt><dd>Onvexa Labs (Manfred Uschan), <span data-i18n="pf_country">Austria</span></dd>
+          <dt data-i18n="pf_platform">Platform</dt><dd>Android (Google Play)</dd>
+          <dt data-i18n="pf_price">Price</dt><dd data-i18n="pf_price_v">Free · optional rewarded ads · no in-app purchases</dd>
+          <dt data-i18n="pf_genre">Genre</dt><dd data-i18n="pf_genre_v">Retro pixel-art rescue puzzle</dd>
+          <dt data-i18n="pf_content">Content</dt><dd data-i18n="pf_content_v">1000 levels in 34 worlds, 8 skills, interactive tutorial</dd>
+          <dt data-i18n="pf_langs">Languages</dt><dd>EN, DE, ES, FR, PT-BR, IT</dd>
+          <dt data-i18n="pf_contact">Contact</dt><dd><a href="mailto:onvexalabs@gmail.com">onvexalabs@gmail.com</a></dd>
+        </dl>
+        <ul class="dl">
+          <li><a href="press/plodders_icon_512.png" download><span data-i18n="dl_icon">App icon</span><span>PNG · 512×512</span></a></li>
+          <li><a id="dlFeature" href="press/feature_graphic_1024x500_en.png" download><span data-i18n="dl_feature">Key art</span><span>PNG · 1024×500</span></a></li>
+          <li><a id="dlTrailer" href="video/trailer_en.mp4" download><span data-i18n="dl_trailer">Trailer</span><span>MP4 · 720p</span></a></li>
+          <li><a href="#worlds"><span data-i18n="dl_shots">Screenshots</span><span data-i18n="dl_shots_v">click to enlarge, right-click to save</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog id="lightbox"><button class="close" id="lbClose" aria-label="Close">×</button><img id="lbImg" alt=""></dialog>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Onvexa Labs · Manfred Uschan</span>
+    <nav>
+      <a id="lnkImprint" href="imprint.html" data-i18n="ft_imprint">Imprint</a>
+      <a id="lnkPrivacy" href="privacy.html" data-i18n="ft_privacy">Privacy policy</a>
+      <a href="mailto:onvexalabs@gmail.com" data-i18n="ft_contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* Set PLAY_LIVE to true once the Play Store listing is public. */
+const PLAY_LIVE = false;
+const PLAY_URL = "https://play.google.com/store/apps/details?id=com.onvexalabs.plodders";
+const LANGS = ["en","de","es","fr","pt","it"];
+const SKILLS = {"de": {"d_driller": "Bohrt senkrecht nach unten, bis nichts mehr unter ihm ist. Stahl stoppt ihn.", "d_glider": "Öffnet nach kurzem Fall einen Blattgleiter und schwebt aus jeder Höhe sicher hinab.", "d_popper": "Zählt von 5 herunter, gerät in Panik und knallt, wobei ein Loch ins Gelände gesprengt wird. Nur so wird ein Stopper entfernt. Dieser Plodder ist verloren.", "d_puncher": "Schlägt einen Tunnel geradeaus durch Fels. Stoppt an Stahl und an Pfeilwänden in Gegenrichtung.", "d_scaler": "Klettert Wände senkrecht hoch, statt umzudrehen, und zieht sich oben drüber. Fällt an Überhängen ab.", "d_stacker": "Baut eine Treppe aus 12 Steinen, schräg nach oben. Gib ihm beim Schulterzucken einen weiteren Stapler zum Weiterbauen.", "d_stopper": "Bleibt mit ausgestreckten Armen stehen. Jeder Plodder, der dagegen läuft, dreht um. Bleibt, bis er knallt.", "d_tunneler": "Gräbt mit der Spitzhacke schräg nach unten, bis er in einen Hohlraum durchbricht.", "sk_driller": "BOHRER", "sk_glider": "GLEITER", "sk_popper": "KNALLER", "sk_puncher": "BOXER", "sk_scaler": "KLETTERER", "sk_stacker": "STAPLER", "sk_stopper": "STOPPER", "sk_tunneler": "TUNNLER"}, "en": {"d_driller": "Drills straight down until there is nothing left beneath it. Steel stops it.", "d_glider": "Opens a leaf glider after a short fall and floats down safely from any height.", "d_popper": "Counts down from 5, panics, then pops and blasts a hole into the terrain. The only way to remove a Stopper. That Plodder is lost.", "d_puncher": "Punches a tunnel straight ahead through rock. Stops at steel and at arrow walls pointing the other way.", "d_scaler": "Climbs straight up walls instead of turning around, then pulls itself over the top. Falls off overhangs.", "d_stacker": "Builds a staircase of 12 bricks, up and forward. Give it another Stacker while it shrugs to keep building.", "d_stopper": "Stands still with arms out. Every Plodder that bumps into it turns around. Stays until popped.", "d_tunneler": "Digs diagonally downward with a pickaxe until it breaks through into open space.", "sk_driller": "DRILLER", "sk_glider": "GLIDER", "sk_popper": "POPPER", "sk_puncher": "PUNCHER", "sk_scaler": "SCALER", "sk_stacker": "STACKER", "sk_stopper": "STOPPER", "sk_tunneler": "TUNNELER"}, "es": {"d_driller": "Perfora en vertical hasta que no queda nada debajo. El acero lo detiene.", "d_glider": "Tras una caída corta abre un planeador de hoja y baja a salvo desde cualquier altura.", "d_popper": "Cuenta desde 5, entra en pánico y estalla, abriendo un agujero en el terreno. Es la única forma de quitar un Bloqueador. Ese Plodder se pierde.", "d_puncher": "Abre un túnel recto a puñetazos a través de la roca. Se detiene ante el acero y ante muros de flechas en sentido contrario.", "d_scaler": "Trepa por las paredes en vez de darse la vuelta y se encarama arriba. Se cae en los salientes.", "d_stacker": "Construye una escalera de 12 ladrillos hacia arriba y adelante. Dale otro Constructor mientras se encoge de hombros para seguir.", "d_stopper": "Se queda quieto con los brazos abiertos. Todo Plodder que choca con él se da la vuelta. Sigue ahí hasta que estalla.", "d_tunneler": "Cava en diagonal hacia abajo con su pico hasta llegar a un hueco.", "sk_driller": "PERFORADOR", "sk_glider": "PLANEADOR", "sk_popper": "PETARDO", "sk_puncher": "BOXEADOR", "sk_scaler": "ESCALADOR", "sk_stacker": "CONSTRUCTOR", "sk_stopper": "BLOQUEADOR", "sk_tunneler": "EXCAVADOR"}, "fr": {"d_driller": "Fore tout droit vers le bas jusqu'à ce qu'il n'y ait plus rien dessous. L'acier l'arrête.", "d_glider": "Après une courte chute, ouvre un planeur-feuille et descend sans risque de n'importe quelle hauteur.", "d_popper": "Compte à rebours depuis 5, panique puis éclate en creusant un trou dans le terrain. Seul moyen de retirer un Bloqueur. Ce Plodder est perdu.", "d_puncher": "Perce à coups de poing un tunnel droit dans la roche. S'arrête sur l'acier et sur les murs fléchés dans l'autre sens.", "d_scaler": "Grimpe aux murs au lieu de faire demi-tour, puis se hisse en haut. Tombe sous les surplombs.", "d_stacker": "Construit un escalier de 12 briques, vers le haut et l'avant. Donne-lui un autre Bâtisseur quand il hausse les épaules pour continuer.", "d_stopper": "Reste immobile, bras écartés. Chaque Plodder qui le touche fait demi-tour. Reste en place jusqu'à ce qu'il éclate.", "d_tunneler": "Creuse en diagonale vers le bas avec sa pioche jusqu'à déboucher dans le vide.", "sk_driller": "FOREUR", "sk_glider": "PLANEUR", "sk_popper": "PÉTARD", "sk_puncher": "BOXEUR", "sk_scaler": "GRIMPEUR", "sk_stacker": "BÂTISSEUR", "sk_stopper": "BLOQUEUR", "sk_tunneler": "MINEUR"}, "it": {"d_driller": "Perfora dritto verso il basso finché sotto non c'è più nulla. L'acciaio lo ferma.", "d_glider": "Dopo una breve caduta apre un aliante di foglia e scende al sicuro da qualsiasi altezza.", "d_popper": "Conta alla rovescia da 5, va nel panico e scoppia, aprendo un buco nel terreno. Unico modo per togliere un Bloccatore. Quel Plodder è perso.", "d_puncher": "Apre a pugni un tunnel dritto nella roccia. Si ferma sull'acciaio e sui muri a frecce nel verso opposto.", "d_scaler": "Si arrampica sui muri invece di girarsi e si issa in cima. Cade sotto le sporgenze.", "d_stacker": "Costruisce una scala di 12 mattoni, in alto e in avanti. Dagli un altro Costruttore mentre alza le spalle per continuare.", "d_stopper": "Sta fermo a braccia aperte. Ogni Plodder che lo urta si gira. Resta lì finché non scoppia.", "d_tunneler": "Scava in diagonale verso il basso col piccone finché sbuca nel vuoto.", "sk_driller": "PERFORATORE", "sk_glider": "PLANATORE", "sk_popper": "PETARDO", "sk_puncher": "PUGILE", "sk_scaler": "SCALATORE", "sk_stacker": "COSTRUTTORE", "sk_stopper": "BLOCCATORE", "sk_tunneler": "MINATORE"}, "pt": {"d_driller": "Perfura reto para baixo até não sobrar nada embaixo. O aço o detém.", "d_glider": "Após uma queda curta, abre um planador de folha e desce em segurança de qualquer altura.", "d_popper": "Conta de 5 até zero, entra em pânico e estoura, abrindo um buraco no terreno. É o único jeito de remover um Bloqueador. Esse Plodder se perde.", "d_puncher": "Abre a socos um túnel reto na rocha. Para no aço e em paredes de setas no sentido contrário.", "d_scaler": "Escala paredes em vez de dar meia-volta e se ergue lá em cima. Cai em saliências.", "d_stacker": "Constrói uma escada de 12 tijolos, para cima e para a frente. Dê outro Construtor enquanto ele dá de ombros para continuar.", "d_stopper": "Fica parado de braços abertos. Todo Plodder que esbarra nele dá meia-volta. Fica ali até estourar.", "d_tunneler": "Cava na diagonal para baixo com a picareta até chegar a um espaço vazio.", "sk_driller": "PERFURADOR", "sk_glider": "PLANADOR", "sk_popper": "BOMBINHA", "sk_puncher": "BOXEADOR", "sk_scaler": "ESCALADOR", "sk_stacker": "CONSTRUTOR", "sk_stopper": "BLOQUEADOR", "sk_tunneler": "ESCAVADOR"}};
+const SKILL_KEYS = ["stacker","puncher","tunneler","driller","glider","scaler","stopper","popper"];
+const ICON_INDEX = {scaler:0,glider:1,popper:2,stopper:3,stacker:4,puncher:5,tunneler:6,driller:7};
+const WORLDS = {
+  en:["Quarry","Foundry","Caverns","Ruins","Clock tower","Moonlit","Twilight","Toxic","Crimson","Stormy","Golden"],
+  de:["Steinbruch","Gießerei","Eishöhlen","Ruinen","Uhrturm","Mondlicht","Dämmer","Gift","Purpur","Sturm","Gold"],
+  es:["Cantera","Fundición","Cavernas","Ruinas","Torre","Lunar","Crepuscular","Tóxico","Carmesí","Tormenta","Dorado"],
+  fr:["Carrière","Fonderie","Cavernes","Ruines","Tour","Lunaire","Crépuscule","Toxique","Pourpre","Orage","Doré"],
+  pt:["Pedreira","Fundição","Cavernas","Ruínas","Torre","Lunar","Crepúsculo","Tóxico","Carmesim","Tempestade","Dourado"],
+  it:["Cava","Fonderia","Caverne","Rovine","Torre","Lunare","Crepuscolo","Tossico","Cremisi","Tempesta","Dorato"]
+};
+const CHIP_COLORS = ["#e0b27a","#ff9a52","#9fd8ff","#7fd1b0","#d9c2ff","#b7c4ff","#ff9fcf","#a6ff5e","#ff6b6b","#9aa7c7","#ffd75e"];
+const SHOT_ALT = {
+  en:["Guide the plodders home","8 skills: dig, build, climb, glide","1000 levels in 34 worlds","Outsmart every trap","A new look in every world","Plan every rescue","Interactive tutorial","Save them all for 3 stars"]
+};
+const T = {"en": {"doc_title": "Plodders: Rescue Puzzle – 1000 retro pixel rescue puzzles for Android", "meta_desc": "They never stop walking. Guide a stubborn crowd of tiny helmet workers home in 1000 retro pixel-art rescue puzzles. 34 worlds, 8 skills, no forced ads, plays offline.", "nav_how": "How it works", "nav_skills": "Skills", "nav_worlds": "Worlds", "nav_trailer": "Trailer", "nav_press": "Press", "hero_title": "They never stop <span>walking.</span>", "hero_sub": "Can you save them all?", "hero_text": "A retro pixel-art rescue puzzle for Android. Tiny helmet workers march straight into every danger – unless you give them the right job at the right moment.", "cta_small": "Android", "cta_soon": "Coming soon to Google Play", "cta_live": "Get it on Google Play", "cta_trailer": "Watch the trailer", "hero_tip": "Psst – tap a plodder up there to turn it into a <b>Stopper</b>. Tap it again to let it go.", "stat_levels": "Levels", "stat_worlds": "Worlds", "stat_skills": "Skills", "stat_ads": "Forced ads", "how_title": "How it works", "how1_t": "They march.", "how1_d": "Plodders walk on their own and never stop – not at cliffs, not at lava, not at anything.", "how2_t": "You hand out jobs.", "how2_d": "Pause, tap a plodder, pick a skill. Build stairs, punch through rock, drill down, glide over the abyss.", "how3_t": "Bring them home.", "how3_d": "Save enough to clear the level. Save every single one for three stars.", "skills_title": "8 skills. Endless combinations.", "skills_sub": "Every level hands you a limited set. Deciding who does what – and exactly when – is the whole puzzle.", "worlds_title": "1000 levels. 34 worlds. One stubborn crowd.", "worlds_text": "Quarry, foundry, frozen caverns, sunken ruins and the clock tower – then all of them again by moonlight, at twilight, toxic, crimson, stormy and golden. The first levels teach you gently. The expert levels will make you sweat.", "shots": ["Guide the plodders home", "8 skills: dig, build, climb, glide", "1000 levels in 34 worlds", "Outsmart every trap", "A new look in every world", "Plan every rescue", "Interactive tutorial", "Save them all for 3 stars"], "trailer_title": "See them plod", "fair_title": "Fair by design", "f1_t": "No forced ads", "f1_d": "An ad only plays if you choose to watch one – for a boost after a failed level. Say no and play on.", "f2_t": "No in-app purchases", "f2_d": "All 1000 levels are free. No gems, no energy bars, no waiting timers.", "f3_t": "Plays offline", "f3_d": "No account, no login, no internet connection needed to play.", "f4_t": "Pause, rewind, fast-forward", "f4_d": "Plan every rescue calmly – or undo a mistake in a second.", "f5_t": "6 languages", "f6_t": "Every level is solvable", "f6_d": "Each of the 1000 levels was beaten by a solver in the real game before it made the cut.", "final_title": "Ready to lead the march?", "final_text": "Plodders: Rescue Puzzle is coming soon to Google Play for Android phones and tablets. Free to play – the way it should be.", "press_title": "Press &amp; creators", "press_text": "Want to write about Plodders or play it on your channel? Everything you need is right here – and questions are always welcome.", "pf_dev": "Developer", "pf_country": "Austria", "pf_platform": "Platform", "pf_price": "Price", "pf_price_v": "Free · optional rewarded ads · no in-app purchases", "pf_genre": "Genre", "pf_genre_v": "Retro pixel-art rescue puzzle", "pf_content": "Content", "pf_content_v": "1000 levels in 34 worlds, 8 skills, interactive tutorial", "pf_langs": "Languages", "pf_contact": "Contact", "dl_icon": "App icon", "dl_feature": "Key art", "dl_trailer": "Trailer", "dl_shots": "Screenshots", "dl_shots_v": "click to enlarge, right-click to save", "ft_imprint": "Imprint", "ft_privacy": "Privacy policy", "ft_contact": "Contact"}, "de": {"doc_title": "Plodders: Rettungs-Puzzle – 1000 Retro-Pixel-Rätsel für Android", "meta_desc": "Sie bleiben nie stehen. Führe eine sture Horde winziger Helm-Arbeiter nach Hause – in 1000 Retro-Pixel-Rettungsrätseln. 34 Welten, 8 Fähigkeiten, keine erzwungene Werbung, offline spielbar.", "nav_how": "So geht's", "nav_skills": "Fähigkeiten", "nav_worlds": "Welten", "nav_trailer": "Trailer", "nav_press": "Presse", "hero_title": "Sie bleiben nie <span>stehen.</span>", "hero_sub": "Rettest du sie alle?", "hero_text": "Ein Retro-Pixel-Rettungspuzzle für Android. Winzige Helm-Arbeiter marschieren schnurstracks in jede Gefahr – außer du gibst ihnen im richtigen Moment die richtige Aufgabe.", "cta_small": "Android", "cta_soon": "Bald bei Google Play", "cta_live": "Jetzt bei Google Play", "cta_trailer": "Trailer ansehen", "hero_tip": "Psst – tippe oben auf einen Plodder, um ihn zum <b>Stopper</b> zu machen. Nochmal tippen lässt ihn weiterlaufen.", "stat_levels": "Level", "stat_worlds": "Welten", "stat_skills": "Fähigkeiten", "stat_ads": "Zwangswerbung", "how_title": "So geht's", "how1_t": "Sie marschieren.", "how1_d": "Plodders laufen von selbst los und bleiben nie stehen – nicht an Klippen, nicht an Lava, nirgends.", "how2_t": "Du verteilst Aufgaben.", "how2_d": "Pausiere, tippe einen Plodder an, wähle eine Fähigkeit. Treppen bauen, Fels durchboxen, nach unten bohren, über den Abgrund gleiten.", "how3_t": "Bring sie nach Hause.", "how3_d": "Rette genug, um das Level zu schaffen. Rette wirklich jeden für drei Sterne.", "skills_title": "8 Fähigkeiten. Unzählige Kombinationen.", "skills_sub": "Jedes Level gibt dir nur eine begrenzte Auswahl. Wer was macht – und wann genau –, das ist das eigentliche Rätsel.", "worlds_title": "1000 Level. 34 Welten. Eine sture Horde.", "worlds_text": "Steinbruch, Gießerei, Eishöhlen, versunkene Ruinen und der Uhrturm – und dann alles noch einmal im Mondlicht, in der Dämmerung, giftig, purpurn, stürmisch und golden. Die ersten Level bringen es dir sanft bei. Die Experten-Level bringen dich ins Schwitzen.", "shots": ["Führe die Plodders nach Hause", "8 Fähigkeiten: graben, bauen, klettern, gleiten", "1000 Level in 34 Welten", "Überliste jede Falle", "Jede Welt mit neuem Look", "Plane jede Rettung", "Interaktives Tutorial", "Rette alle für 3 Sterne"], "trailer_title": "Sieh sie stapfen", "fair_title": "Fair von Anfang an", "f1_t": "Keine erzwungene Werbung", "f1_d": "Werbung läuft nur, wenn du dich dafür entscheidest – für einen Bonus nach einem verlorenen Level. Sag nein und spiel weiter.", "f2_t": "Keine In-App-Käufe", "f2_d": "Alle 1000 Level sind gratis. Keine Edelsteine, keine Energieleisten, keine Wartezeiten.", "f3_t": "Offline spielbar", "f3_d": "Kein Konto, kein Login, keine Internetverbindung nötig.", "f4_t": "Pause, zurückspulen, vorspulen", "f4_d": "Plane jede Rettung in Ruhe – oder mach einen Fehler in einer Sekunde rückgängig.", "f5_t": "6 Sprachen", "f6_t": "Jedes Level ist lösbar", "f6_d": "Jedes der 1000 Level wurde im echten Spiel von einem Löser geschafft, bevor es aufgenommen wurde.", "final_title": "Bereit, den Marsch anzuführen?", "final_text": "Plodders: Rettungs-Puzzle erscheint bald bei Google Play für Android-Smartphones und -Tablets. Kostenlos spielbar – so wie es sein soll.", "press_title": "Presse &amp; Creator", "press_text": "Du willst über Plodders schreiben oder es auf deinem Kanal spielen? Hier findest du alles, was du brauchst – und Fragen sind jederzeit willkommen.", "pf_dev": "Entwickler", "pf_country": "Österreich", "pf_platform": "Plattform", "pf_price": "Preis", "pf_price_v": "Kostenlos · freiwillige Belohnungs-Werbung · keine In-App-Käufe", "pf_genre": "Genre", "pf_genre_v": "Retro-Pixel-Rettungspuzzle", "pf_content": "Umfang", "pf_content_v": "1000 Level in 34 Welten, 8 Fähigkeiten, interaktives Tutorial", "pf_langs": "Sprachen", "pf_contact": "Kontakt", "dl_icon": "App-Icon", "dl_feature": "Key Art", "dl_trailer": "Trailer", "dl_shots": "Screenshots", "dl_shots_v": "Klick zum Vergrößern, Rechtsklick zum Speichern", "ft_imprint": "Impressum", "ft_privacy": "Datenschutz", "ft_contact": "Kontakt"}, "es": {"doc_title": "Plodders: Puzle de rescate – 1000 puzles retro pixel art para Android", "meta_desc": "Nunca dejan de caminar. Guía a casa a una multitud testaruda de pequeños obreros con casco en 1000 puzles de rescate retro. 34 mundos, 8 habilidades, sin anuncios obligatorios, sin conexión.", "nav_how": "Cómo se juega", "nav_skills": "Habilidades", "nav_worlds": "Mundos", "nav_trailer": "Tráiler", "nav_press": "Prensa", "hero_title": "Nunca dejan de <span>caminar.</span>", "hero_sub": "¿Puedes salvarlos a todos?", "hero_text": "Un puzle de rescate retro en pixel art para Android. Pequeños obreros con casco marchan directos hacia cada peligro… a menos que les des la tarea adecuada en el momento justo.", "cta_small": "Android", "cta_soon": "Muy pronto en Google Play", "cta_live": "Disponible en Google Play", "cta_trailer": "Ver el tráiler", "hero_tip": "Psst: toca un plodder ahí arriba para convertirlo en <b>Bloqueador</b>. Tócalo otra vez para soltarlo.", "stat_levels": "Niveles", "stat_worlds": "Mundos", "stat_skills": "Habilidades", "stat_ads": "Anuncios forzados", "how_title": "Cómo se juega", "how1_t": "Ellos marchan.", "how1_d": "Los plodders caminan solos y nunca se detienen: ni ante un precipicio, ni ante la lava, ni ante nada.", "how2_t": "Tú repartes tareas.", "how2_d": "Pausa, toca un plodder y elige una habilidad. Construye escaleras, atraviesa la roca, perfora hacia abajo, planea sobre el abismo.", "how3_t": "Llévalos a casa.", "how3_d": "Salva a suficientes para superar el nivel. Sálvalos a todos para conseguir tres estrellas.", "skills_title": "8 habilidades. Combinaciones infinitas.", "skills_sub": "Cada nivel te da un número limitado. Decidir quién hace qué, y exactamente cuándo, es el verdadero puzle.", "worlds_title": "1000 niveles. 34 mundos. Una multitud testaruda.", "worlds_text": "Cantera, fundición, cavernas heladas, ruinas sumergidas y la torre del reloj… y luego todo otra vez a la luz de la luna, al crepúsculo, tóxico, carmesí, bajo la tormenta y dorado. Los primeros niveles te enseñan con calma. Los niveles expertos te harán sudar.", "shots": ["Guía a los plodders a casa", "8 habilidades: cavar, construir, trepar, planear", "1000 niveles en 34 mundos", "Supera cada trampa", "Cada mundo luce distinto", "Planea cada rescate", "Tutorial interactivo", "Sálvalos a todos para 3 estrellas"], "trailer_title": "Míralos caminar", "fair_title": "Justo por diseño", "f1_t": "Sin anuncios obligatorios", "f1_d": "Un anuncio solo se reproduce si tú decides verlo, a cambio de una ayuda tras perder un nivel. Di que no y sigue jugando.", "f2_t": "Sin compras integradas", "f2_d": "Los 1000 niveles son gratis. Sin gemas, sin barras de energía, sin esperas.", "f3_t": "Juega sin conexión", "f3_d": "Sin cuenta, sin inicio de sesión, sin necesidad de internet.", "f4_t": "Pausa, rebobina, acelera", "f4_d": "Planea cada rescate con calma o deshaz un error en un segundo.", "f5_t": "6 idiomas", "f6_t": "Todos los niveles tienen solución", "f6_d": "Cada uno de los 1000 niveles fue superado por un solucionador en el juego real antes de entrar.", "final_title": "¿Listo para liderar la marcha?", "final_text": "Plodders: Puzle de rescate llega muy pronto a Google Play para móviles y tabletas Android. Gratis, como debe ser.", "press_title": "Prensa y creadores", "press_text": "¿Quieres escribir sobre Plodders o jugarlo en tu canal? Aquí tienes todo lo necesario, y las preguntas siempre son bienvenidas.", "pf_dev": "Desarrollador", "pf_country": "Austria", "pf_platform": "Plataforma", "pf_price": "Precio", "pf_price_v": "Gratis · anuncios con recompensa opcionales · sin compras integradas", "pf_genre": "Género", "pf_genre_v": "Puzle de rescate retro en pixel art", "pf_content": "Contenido", "pf_content_v": "1000 niveles en 34 mundos, 8 habilidades, tutorial interactivo", "pf_langs": "Idiomas", "pf_contact": "Contacto", "dl_icon": "Icono de la app", "dl_feature": "Imagen principal", "dl_trailer": "Tráiler", "dl_shots": "Capturas", "dl_shots_v": "clic para ampliar, clic derecho para guardar", "ft_imprint": "Aviso legal", "ft_privacy": "Privacidad", "ft_contact": "Contacto"}, "fr": {"doc_title": "Plodders : Puzzle de sauvetage – 1000 puzzles rétro en pixel art pour Android", "meta_desc": "Ils ne s'arrêtent jamais. Ramène à la maison une foule têtue de petits ouvriers casqués dans 1000 puzzles de sauvetage rétro. 34 mondes, 8 compétences, aucune pub forcée, jouable hors ligne.", "nav_how": "Principe", "nav_skills": "Compétences", "nav_worlds": "Mondes", "nav_trailer": "Bande-annonce", "nav_press": "Presse", "hero_title": "Ils ne s'arrêtent <span>jamais.</span>", "hero_sub": "Sauras-tu tous les sauver ?", "hero_text": "Un puzzle de sauvetage rétro en pixel art pour Android. De petits ouvriers casqués foncent droit vers chaque danger… sauf si tu leur confies la bonne tâche au bon moment.", "cta_small": "Android", "cta_soon": "Bientôt sur Google Play", "cta_live": "Disponible sur Google Play", "cta_trailer": "Voir la bande-annonce", "hero_tip": "Psst : touche un plodder là-haut pour en faire un <b>Bloqueur</b>. Touche-le encore pour le libérer.", "stat_levels": "Niveaux", "stat_worlds": "Mondes", "stat_skills": "Compétences", "stat_ads": "Pubs forcées", "how_title": "Principe", "how1_t": "Ils marchent.", "how1_d": "Les plodders avancent tout seuls et ne s'arrêtent jamais : ni devant une falaise, ni devant la lave, ni devant rien.", "how2_t": "Tu distribues les tâches.", "how2_d": "Mets en pause, touche un plodder, choisis une compétence. Bâtis des escaliers, perce la roche, fore vers le bas, plane au-dessus du vide.", "how3_t": "Ramène-les à la maison.", "how3_d": "Sauves-en assez pour réussir le niveau. Sauve-les tous pour trois étoiles.", "skills_title": "8 compétences. Des combinaisons infinies.", "skills_sub": "Chaque niveau t'en donne un nombre limité. Décider qui fait quoi, et à quel moment précis, c'est tout le puzzle.", "worlds_title": "1000 niveaux. 34 mondes. Une foule têtue.", "worlds_text": "Carrière, fonderie, cavernes glacées, ruines englouties et tour de l'horloge… puis tout à nouveau au clair de lune, au crépuscule, en version toxique, pourpre, orageuse et dorée. Les premiers niveaux t'apprennent en douceur. Les niveaux experts vont te faire transpirer.", "shots": ["Ramène les plodders à la maison", "8 compétences : creuser, bâtir, grimper, planer", "1000 niveaux dans 34 mondes", "Déjoue chaque piège", "Chaque monde change de look", "Planifie chaque sauvetage", "Tutoriel interactif", "Sauve-les tous pour 3 étoiles"], "trailer_title": "Regarde-les avancer", "fair_title": "Équitable par principe", "f1_t": "Aucune pub forcée", "f1_d": "Une pub ne s'affiche que si tu choisis de la regarder, pour un bonus après un niveau raté. Dis non et continue à jouer.", "f2_t": "Aucun achat intégré", "f2_d": "Les 1000 niveaux sont gratuits. Pas de gemmes, pas de jauge d'énergie, pas d'attente.", "f3_t": "Jouable hors ligne", "f3_d": "Pas de compte, pas de connexion, pas besoin d'internet.", "f4_t": "Pause, rembobinage, avance rapide", "f4_d": "Planifie chaque sauvetage calmement, ou annule une erreur en une seconde.", "f5_t": "6 langues", "f6_t": "Chaque niveau a une solution", "f6_d": "Chacun des 1000 niveaux a été réussi par un solveur dans le vrai jeu avant d'être retenu.", "final_title": "Prêt à mener la marche ?", "final_text": "Plodders : Puzzle de sauvetage arrive bientôt sur Google Play pour smartphones et tablettes Android. Gratuit, comme il se doit.", "press_title": "Presse &amp; créateurs", "press_text": "Tu veux écrire sur Plodders ou y jouer sur ta chaîne ? Tout ce qu'il te faut est ici, et les questions sont toujours les bienvenues.", "pf_dev": "Développeur", "pf_country": "Autriche", "pf_platform": "Plateforme", "pf_price": "Prix", "pf_price_v": "Gratuit · pubs récompensées facultatives · aucun achat intégré", "pf_genre": "Genre", "pf_genre_v": "Puzzle de sauvetage rétro en pixel art", "pf_content": "Contenu", "pf_content_v": "1000 niveaux dans 34 mondes, 8 compétences, tutoriel interactif", "pf_langs": "Langues", "pf_contact": "Contact", "dl_icon": "Icône de l'app", "dl_feature": "Visuel principal", "dl_trailer": "Bande-annonce", "dl_shots": "Captures d'écran", "dl_shots_v": "clic pour agrandir, clic droit pour enregistrer", "ft_imprint": "Mentions légales", "ft_privacy": "Confidentialité", "ft_contact": "Contact"}, "pt": {"doc_title": "Plodders: Quebra-cabeça de resgate – 1000 fases retrô em pixel art para Android", "meta_desc": "Eles nunca param de andar. Leve para casa uma multidão teimosa de pequenos operários de capacete em 1000 quebra-cabeças de resgate retrô. 34 mundos, 8 habilidades, sem anúncios forçados, funciona offline.", "nav_how": "Como funciona", "nav_skills": "Habilidades", "nav_worlds": "Mundos", "nav_trailer": "Trailer", "nav_press": "Imprensa", "hero_title": "Eles nunca param de <span>andar.</span>", "hero_sub": "Você consegue salvar todos?", "hero_text": "Um quebra-cabeça de resgate retrô em pixel art para Android. Pequenos operários de capacete marcham direto para todo perigo – a não ser que você dê a eles a tarefa certa na hora certa.", "cta_small": "Android", "cta_soon": "Em breve no Google Play", "cta_live": "Disponível no Google Play", "cta_trailer": "Ver o trailer", "hero_tip": "Psiu – toque em um plodder lá em cima para transformá-lo em <b>Bloqueador</b>. Toque de novo para soltá-lo.", "stat_levels": "Fases", "stat_worlds": "Mundos", "stat_skills": "Habilidades", "stat_ads": "Anúncios forçados", "how_title": "Como funciona", "how1_t": "Eles marcham.", "how1_d": "Os plodders andam sozinhos e nunca param – nem diante de um penhasco, nem da lava, nem de nada.", "how2_t": "Você distribui tarefas.", "how2_d": "Pause, toque em um plodder e escolha uma habilidade. Construa escadas, atravesse a rocha, perfure para baixo, plane sobre o abismo.", "how3_t": "Leve-os para casa.", "how3_d": "Salve o suficiente para passar de fase. Salve cada um deles para ganhar três estrelas.", "skills_title": "8 habilidades. Combinações sem fim.", "skills_sub": "Cada fase dá a você um conjunto limitado. Decidir quem faz o quê – e exatamente quando – é o verdadeiro quebra-cabeça.", "worlds_title": "1000 fases. 34 mundos. Uma multidão teimosa.", "worlds_text": "Pedreira, fundição, cavernas geladas, ruínas submersas e a torre do relógio – e depois tudo de novo ao luar, no crepúsculo, tóxico, carmesim, na tempestade e dourado. As primeiras fases ensinam com calma. As fases de especialista vão fazer você suar.", "shots": ["Leve os plodders para casa", "8 habilidades: cavar, construir, escalar, planar", "1000 fases em 34 mundos", "Vença cada armadilha", "Cada mundo com novo visual", "Planeje cada resgate", "Tutorial interativo", "Salve todos para 3 estrelas"], "trailer_title": "Veja-os marchar", "fair_title": "Justo por natureza", "f1_t": "Sem anúncios forçados", "f1_d": "Um anúncio só aparece se você escolher assistir – em troca de uma ajuda depois de perder uma fase. Diga não e continue jogando.", "f2_t": "Sem compras no app", "f2_d": "Todas as 1000 fases são grátis. Sem gemas, sem barras de energia, sem espera.", "f3_t": "Funciona offline", "f3_d": "Sem conta, sem login, sem precisar de internet.", "f4_t": "Pause, volte, acelere", "f4_d": "Planeje cada resgate com calma – ou desfaça um erro em um segundo.", "f5_t": "6 idiomas", "f6_t": "Toda fase tem solução", "f6_d": "Cada uma das 1000 fases foi vencida por um solucionador no jogo real antes de entrar.", "final_title": "Pronto para liderar a marcha?", "final_text": "Plodders: Quebra-cabeça de resgate chega em breve ao Google Play para celulares e tablets Android. Grátis – como deve ser.", "press_title": "Imprensa e criadores", "press_text": "Quer escrever sobre Plodders ou jogar no seu canal? Aqui está tudo o que você precisa – e perguntas são sempre bem-vindas.", "pf_dev": "Desenvolvedor", "pf_country": "Áustria", "pf_platform": "Plataforma", "pf_price": "Preço", "pf_price_v": "Grátis · anúncios premiados opcionais · sem compras no app", "pf_genre": "Gênero", "pf_genre_v": "Quebra-cabeça de resgate retrô em pixel art", "pf_content": "Conteúdo", "pf_content_v": "1000 fases em 34 mundos, 8 habilidades, tutorial interativo", "pf_langs": "Idiomas", "pf_contact": "Contato", "dl_icon": "Ícone do app", "dl_feature": "Arte principal", "dl_trailer": "Trailer", "dl_shots": "Capturas de tela", "dl_shots_v": "clique para ampliar, botão direito para salvar", "ft_imprint": "Aviso legal", "ft_privacy": "Privacidade", "ft_contact": "Contato"}, "it": {"doc_title": "Plodders: Puzzle di salvataggio – 1000 rompicapi retrò in pixel art per Android", "meta_desc": "Non si fermano mai. Riporta a casa una folla testarda di piccoli operai con il casco in 1000 rompicapi di salvataggio retrò. 34 mondi, 8 abilità, nessuna pubblicità forzata, gioca offline.", "nav_how": "Come si gioca", "nav_skills": "Abilità", "nav_worlds": "Mondi", "nav_trailer": "Trailer", "nav_press": "Stampa", "hero_title": "Non si fermano <span>mai.</span>", "hero_sub": "Riesci a salvarli tutti?", "hero_text": "Un rompicapo di salvataggio retrò in pixel art per Android. Piccoli operai con il casco marciano dritti verso ogni pericolo – a meno che tu non dia loro il compito giusto al momento giusto.", "cta_small": "Android", "cta_soon": "Presto su Google Play", "cta_live": "Disponibile su Google Play", "cta_trailer": "Guarda il trailer", "hero_tip": "Psst – tocca un plodder lassù per trasformarlo in <b>Bloccatore</b>. Toccalo di nuovo per lasciarlo andare.", "stat_levels": "Livelli", "stat_worlds": "Mondi", "stat_skills": "Abilità", "stat_ads": "Pubblicità forzate", "how_title": "Come si gioca", "how1_t": "Loro marciano.", "how1_d": "I plodder camminano da soli e non si fermano mai – né davanti a un dirupo, né alla lava, né a nient'altro.", "how2_t": "Tu assegni i compiti.", "how2_d": "Metti in pausa, tocca un plodder, scegli un'abilità. Costruisci scale, sfonda la roccia, perfora verso il basso, plana sopra l'abisso.", "how3_t": "Riportali a casa.", "how3_d": "Salvane abbastanza per superare il livello. Salvali tutti per tre stelle.", "skills_title": "8 abilità. Combinazioni infinite.", "skills_sub": "Ogni livello te ne dà un numero limitato. Decidere chi fa cosa – e esattamente quando – è il vero rompicapo.", "worlds_title": "1000 livelli. 34 mondi. Una folla testarda.", "worlds_text": "Cava, fonderia, caverne di ghiaccio, rovine sommerse e la torre dell'orologio – e poi tutto di nuovo al chiaro di luna, al crepuscolo, tossico, cremisi, in tempesta e dorato. I primi livelli ti insegnano con calma. I livelli esperti ti faranno sudare.", "shots": ["Riporta a casa i plodder", "8 abilità: scavare, costruire, scalare, planare", "1000 livelli in 34 mondi", "Batti ogni trappola", "Ogni mondo ha un nuovo look", "Pianifica ogni salvataggio", "Tutorial interattivo", "Salvali tutti per 3 stelle"], "trailer_title": "Guardali marciare", "fair_title": "Onesto per scelta", "f1_t": "Nessuna pubblicità forzata", "f1_d": "Una pubblicità parte solo se scegli di guardarla, in cambio di un aiuto dopo un livello perso. Di' di no e continua a giocare.", "f2_t": "Nessun acquisto in-app", "f2_d": "Tutti i 1000 livelli sono gratis. Niente gemme, niente barre di energia, niente attese.", "f3_t": "Gioca offline", "f3_d": "Nessun account, nessun login, nessuna connessione internet necessaria.", "f4_t": "Pausa, riavvolgi, accelera", "f4_d": "Pianifica ogni salvataggio con calma – o annulla un errore in un secondo.", "f5_t": "6 lingue", "f6_t": "Ogni livello ha una soluzione", "f6_d": "Ognuno dei 1000 livelli è stato superato da un risolutore nel gioco vero prima di essere incluso.", "final_title": "Pronto a guidare la marcia?", "final_text": "Plodders: Puzzle di salvataggio arriva presto su Google Play per smartphone e tablet Android. Gratis – come dovrebbe essere.", "press_title": "Stampa e creator", "press_text": "Vuoi scrivere di Plodders o giocarci sul tuo canale? Qui trovi tutto ciò che ti serve – e le domande sono sempre benvenute.", "pf_dev": "Sviluppatore", "pf_country": "Austria", "pf_platform": "Piattaforma", "pf_price": "Prezzo", "pf_price_v": "Gratis · pubblicità con premio facoltative · nessun acquisto in-app", "pf_genre": "Genere", "pf_genre_v": "Rompicapo di salvataggio retrò in pixel art", "pf_content": "Contenuti", "pf_content_v": "1000 livelli in 34 mondi, 8 abilità, tutorial interattivo", "pf_langs": "Lingue", "pf_contact": "Contatto", "dl_icon": "Icona dell'app", "dl_feature": "Immagine principale", "dl_trailer": "Trailer", "dl_shots": "Screenshot", "dl_shots_v": "clic per ingrandire, clic destro per salvare", "ft_imprint": "Note legali", "ft_privacy": "Privacy", "ft_contact": "Contatti"}};
+
+let lang = "en";
+function detect(){
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q && LANGS.includes(q)) return q;
+  try { const s = localStorage.getItem("plodders_lang"); if (s && LANGS.includes(s)) return s; } catch(e) {}
+  for (const l of (navigator.languages || [navigator.language || "en"])) {
+    const c = (l || "").slice(0,2).toLowerCase();
+    if (LANGS.includes(c)) return c;
+  }
+  return "en";
+}
+function tr(k){ return (T[lang] && T[lang][k]) || T.en[k] || ""; }
+function apply(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById("lang").value = l;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    let k = el.dataset.i18n;
+    if (k === "cta_soon" && PLAY_LIVE) k = "cta_live";
+    const v = tr(k); if (v) el.innerHTML = v;
+  });
+  document.title = tr("doc_title");
+  document.querySelector('meta[name=description]').content = tr("meta_desc");
+  document.documentElement.style.setProperty("--hero", "url(img/hero_" + l + ".webp)");
+  document.querySelector(".final .strip").style.backgroundImage = "url(img/hero_" + l + ".webp)";
+  // skills
+  const g = document.getElementById("skillGrid"); g.innerHTML = "";
+  for (const k of SKILL_KEYS) {
+    const s = SKILLS[l] || SKILLS.en;
+    const d = document.createElement("div"); d.className = "skill reveal on";
+    d.innerHTML = '<div class="ic" style="background-position:' + (-ICON_INDEX[k]*48) + 'px 0"></div><h3></h3><p></p>';
+    d.querySelector("h3").textContent = s["sk_"+k]; d.querySelector("p").textContent = s["d_"+k];
+    g.appendChild(d);
+  }
+  // world chips
+  const c = document.getElementById("chips"); c.innerHTML = "";
+  WORLDS[l].forEach((w,i) => { const s = document.createElement("span"); s.className="chip"; s.style.background = CHIP_COLORS[i]; s.textContent = w; c.appendChild(s); });
+  // gallery
+  const gal = document.getElementById("gallery"); gal.innerHTML = "";
+  const alts = T[l].shots || T.en.shots;
+  for (let i=1;i<=8;i++){
+    const b = document.createElement("button"); b.type="button";
+    const im = document.createElement("img"); im.loading="lazy"; im.width=1280; im.height=720;
+    im.src = "img/shots/"+l+"/0"+i+".webp"; im.alt = alts[i-1];
+    b.appendChild(im); b.onclick = () => openLb(im.src, im.alt); gal.appendChild(b);
+  }
+  // trailer + downloads
+  const v = document.getElementById("trailerVideo"), src = document.getElementById("trailerSrc");
+  const want = "video/trailer_"+l+".mp4";
+  if (!src.src.endsWith(want)) { src.src = want; v.load(); }
+  document.getElementById("dlTrailer").href = want;
+  document.getElementById("dlFeature").href = "press/feature_graphic_1024x500_"+l+".png";
+  const legal = (l === "de") ? "?lang=de" : "";
+  document.getElementById("lnkImprint").href = "imprint.html" + legal;
+  document.getElementById("lnkPrivacy").href = "privacy.html" + legal;
+  try { localStorage.setItem("plodders_lang", l); } catch(e) {}
+}
+function openLb(src, alt){
+  const d = document.getElementById("lightbox"), im = document.getElementById("lbImg");
+  im.src = src; im.alt = alt;
+  if (d.showModal) d.showModal(); else window.open(src);
+}
+document.getElementById("lbClose").onclick = () => document.getElementById("lightbox").close();
+document.getElementById("lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") e.target.close(); });
+document.getElementById("lang").addEventListener("change", e => {
+  apply(e.target.value);
+  const u = new URL(location.href); u.searchParams.set("lang", e.target.value); history.replaceState(null, "", u);
+});
+if (!PLAY_LIVE) {
+  for (const id of ["playBtn","playBtn2"]) {
+    const a = document.getElementById(id);
+    a.href = "#press"; a.removeAttribute("rel");
+  }
+}
+apply(detect());
+
+// reveal on scroll
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), {threshold:.12}) : null;
+document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("on"));
+
+/* ------------------------------------------------------------------ the crowd
+   Sprites come straight from the game (16x16 frames). The hero art is a 1880x720
+   render at 3 screen px per game px; the grass surface is at y = 620. */
+(function(){
+  const cv = document.getElementById("crowd"), ctx = cv.getContext("2d");
+  const sheet = new Image(); sheet.src = "img/plodder_sheet.png";
+  const IW = 1880, IH = 720, GROUND = 621, GP = 3;
+  const ROW = {walk:0, stopper:6, cheer:17, fall:1};
+  const N = {walk:8, stopper:4, cheer:8, fall:4};
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0,H=0,s=1,ox=0,oy=0,dpr=1, crowd=[], last=0, t=0;
+  function layout(){
+    const r = cv.getBoundingClientRect(); dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = r.width; H = r.height; cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    s = Math.max(W/IW, H/IH); ox = (W - IW*s)/2; oy = (H - IH*s); // background-position: center 100%
+  }
+  function spawn(){
+    crowd = [];
+    const n = 12;
+    for (let i=0;i<n;i++) crowd.push({x: Math.random()*IW, dir: Math.random()<.75?1:-1, st:"walk", f: Math.random()*8, sp: 16 + Math.random()*4, cheer:0});
+  }
+  function hit(px){
+    // px in image coordinates; nearest plodder within 40 image px
+    let best=null, bd=40;
+    for (const p of crowd){ const d=Math.abs(p.x-px); if (d<bd){bd=d;best=p;} }
+    return best;
+  }
+  cv.addEventListener("pointerdown", e => {
+    const r = cv.getBoundingClientRect();
+    const ix = (e.clientX - r.left - ox)/s, iy = (e.clientY - r.top - oy)/s;
+    if (iy < GROUND - 120) return;
+    const p = hit(ix); if (!p) return;
+    if (p.st === "stopper") { p.st = "walk"; p.dir = -p.dir; }
+    else {
+      p.st = "stopper";
+      const stoppers = crowd.filter(q => q.st === "stopper");
+      if (stoppers.length > 3) stoppers[0].st = "walk";
+    }
+    if (still) draw();
+  });
+  function step(dt){
+    for (const p of crowd){
+      p.f += dt*10;
+      if (p.st === "cheer") { p.cheer -= dt; if (p.cheer <= 0) p.st = "walk"; continue; }
+      if (p.st !== "walk") continue;
+      const nx = p.x + p.dir * p.sp * GP * dt;
+      for (const q of crowd){
+        if (q.st === "stopper" && q !== p && Math.abs(q.x - nx) < 5*GP && Math.sign(q.x - p.x) === p.dir){ p.dir = -p.dir; break; }
+      }
+      p.x += p.dir * p.sp * GP * dt;
+      const vis0 = -ox/s, vis1 = (W-ox)/s;
+      if (p.x > vis1 + 30) p.x = vis0 - 30;
+      if (p.x < vis0 - 30) p.x = vis1 + 30;
+      if (Math.random() < dt*0.015) { p.st = "cheer"; p.cheer = 1.2; }
+    }
+  }
+  function draw(){
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+    if (!sheet.complete) return;
+    ctx.imageSmoothingEnabled = false;
+    const sz = 16*GP*s;
+    for (const p of crowd){
+      const a = p.st, fr = Math.floor(p.f) % N[a];
+      const x = ox + p.x*s, y = oy + GROUND*s;
+      ctx.save();
+      ctx.translate(Math.round(x), Math.round(y - sz));
+      if (p.dir < 0) { ctx.scale(-1,1); ctx.translate(-sz/2, 0); } else ctx.translate(-sz/2, 0);
+      ctx.drawImage(sheet, fr*16, ROW[a]*16, 16, 16, 0, 0, Math.round(sz), Math.round(sz));
+      ctx.restore();
+    }
+  }
+  function loop(ts){
+    const dt = Math.min(.05, (ts - (last||ts))/1000); last = ts;
+    if (!document.hidden) { step(dt); draw(); }
+    requestAnimationFrame(loop);
+  }
+  addEventListener("resize", () => { layout(); draw(); });
+  sheet.onload = () => { layout(); spawn(); if (still) draw(); else requestAnimationFrame(loop); };
+})();
+</script>
+</body>
+</html>
